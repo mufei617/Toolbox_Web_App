@@ -25,13 +25,13 @@ namespace app.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<Users>> Register(RegisterDto registerDto)
         {
+            //如果用户名存在，返回400 "Username is taken"
             if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
-            using var hmac = new HMACSHA512();
             var user = new Users
             {
-                username = registerDto.Username.ToLower(),
-                password_hash = GetMD5Hash(registerDto.Password),
-                role_id = 2,
+                username = registerDto.Username,
+                password_hash = GetMD5Hash(registerDto.Password),//加密密码
+                role_id = 2,//默认用户类型为Clients
                 created_at = DateTime.Now
             };
             _DbContext.users.Add(user);
@@ -39,7 +39,7 @@ namespace app.Controllers
             return Ok();
         }
 
-
+        //显示所有用户信息
         [HttpGet("allusers")]
         public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
         {
@@ -47,6 +47,7 @@ namespace app.Controllers
             return users;
         }
 
+        //使用MD5 加密用户密码
         private static string GetMD5Hash(string inputString)
         {
             using (MD5 md5 = MD5.Create())
@@ -62,9 +63,11 @@ namespace app.Controllers
             }
         }
 
+        //判断用户名是否存在
         private async Task<bool> UserExists(string username)
         {
-            return await _DbContext.users.AnyAsync(x => x.username == username.ToLower());
+            //把数据库中的用户名和用户输入的转为小写字母进行比较
+            return await _DbContext.users.AnyAsync(x => x.username.ToLower() == username.ToLower());
         }
 
     }
