@@ -10,15 +10,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using app.Services;
+using app.Repositories;
+using app.Interfaces;
 
 namespace app.Controllers
 {
     public class UserController : BaseController
     {
         private readonly MyDbContext _DbContext;
-        public UserController(MyDbContext DbContext)
+        private readonly IUserRepository _userRepository;
+        public UserController(MyDbContext DbContext, IUserRepository userRepository)
         {
             _DbContext = DbContext;
+            _userRepository = userRepository;
         }
 
         //用户注册
@@ -26,11 +31,11 @@ namespace app.Controllers
         public async Task<ActionResult<Users>> Register(RegisterDto registerDto)
         {
             //如果用户名存在，返回400 "Username is taken"
-            if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
+            if (await _userRepository.UserExists(registerDto.username)) return BadRequest("Username is taken");
             var user = new Users
             {
-                username = registerDto.Username,
-                password_hash = GetMD5Hash(registerDto.Password),//加密密码
+                username = registerDto.username,
+                password_hash = UserpasswordHashExtension.GetMD5Hash(registerDto.password),//加密密码
                 role_id = 2,//默认用户类型为Clients
                 created_at = DateTime.Now
             };
@@ -40,35 +45,25 @@ namespace app.Controllers
         }
 
         //显示所有用户信息
-        [HttpGet("allusers")]
+        [HttpGet("getallusers")]
         public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
         {
-            var users = await _DbContext.users.ToListAsync();
-            return users;
+            var allUsers = await _userRepository.GetAllUsers();
+            return Ok(allUsers);
         }
 
-        //使用MD5 加密用户密码
-        private static string GetMD5Hash(string inputString)
+        //根据用户id获取用户信息
+        [HttpGet("getuser/{id}")]
+        public async Task<ActionResult<Users>> GetUser(int id)
         {
-            using (MD5 md5 = MD5.Create())
+            var user = await _userRepository.GetUserById(id);
+            if(user == null)
             {
-                byte[] inputBytes = Encoding.UTF8.GetBytes(inputString);
-                byte[] hashBytes = md5.ComputeHash(inputBytes);
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < hashBytes.Length; i++)
-                {
-                    sb.Append(hashBytes[i].ToString("x2"));
-                }
-                return sb.ToString();
+                return BadRequest("User not exists!");
             }
+            return Ok(user);
         }
 
-        //判断用户名是否存在
-        private async Task<bool> UserExists(string username)
-        {
-            //把数据库中的用户名和用户输入的转为小写字母进行比较
-            return await _DbContext.users.AnyAsync(x => x.username.ToLower() == username.ToLower());
-        }
 
     }
 }

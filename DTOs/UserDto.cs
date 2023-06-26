@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace app.DTOs
 {
-    public class RegisterDto
+    public class UserDto
     {
-        [Required]
+        public int id { get; set; }
         public string username { get; set; }
-        [Required]
-        public string password { get; set; }
+        public string role_name { get; set; }
     }
 }
