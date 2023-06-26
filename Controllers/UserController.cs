@@ -21,6 +21,7 @@ namespace app.Controllers
             _DbContext = DbContext;
         }
 
+        //用户注册
         [HttpPost("register")]
         public async Task<ActionResult<Users>> Register(RegisterDto registerDto)
         {
