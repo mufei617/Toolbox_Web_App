@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace app.Services
 {
-    public class UserpasswordHashExtension
+    public class UserPasswordHashExtension
     {
         //使用MD5 加密用户密码
         public static string GetMD5Hash(string inputString)

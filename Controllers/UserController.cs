@@ -35,7 +35,7 @@ namespace app.Controllers
             var user = new Users
             {
                 username = registerDto.username,
-                password_hash = UserpasswordHashExtension.GetMD5Hash(registerDto.password),//加密密码
+                password_hash = UserPasswordHashExtension.GetMD5Hash(registerDto.password),//加密密码
                 role_id = 2,//默认用户类型为Clients
                 created_at = DateTime.Now
             };
@@ -43,6 +43,15 @@ namespace app.Controllers
             await _DbContext.SaveChangesAsync();
             return Ok();
         }
+
+
+        [HttpPost("login")]
+        public async Task<ActionResult<Users>> Login(RegisterDto registerDto)
+        {
+             await _userRepository.getUserInfo(registerDto.username,registerDto.password);
+            return Ok();
+        }
+
 
         //显示所有用户信息
         [HttpGet("getallusers")]

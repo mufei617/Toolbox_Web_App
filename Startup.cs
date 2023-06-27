@@ -1,6 +1,7 @@
 using app.DataAccess;
 using app.Interfaces;
 using app.Repositories;
+using app.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,7 +32,7 @@ namespace app
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
-
+            services.AddScoped<ITokenService,TokenService>();
             services.AddDbContext<MyDbContext>(options => options.UseMySQL(Configuration.GetConnectionString("connectionDB")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
