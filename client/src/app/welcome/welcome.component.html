@@ -1,0 +1,25 @@
+<nav class="navMenu">
+	<a href="#">Home</a>
+	<a href="#">Blog</a>
+	<a href="#">Work</a>
+	<a href="#">About</a>
+	<div class="dot"></div>
+
+	<div class="dropdown"(click)="toggleDropdown()">
+	  <img class="user-avatar" src="assets/userIcon.png" alt="User Avatar">
+	  <div [ngClass]="{'dropdown-menu': true, 'onOf': isDropdownOpen}">
+		
+		  <h1>{{this.loggedInUser?.username}}</h1>
+		  <span>admin</span>
+		  <ul>
+		  <li class="divider"></li>
+
+		  <li><i class="fas fa-user-circle" href="/profile">My profile</i></li>
+		  <li><i class="fas fa-user-circle">Setting</i></li>
+		  <li><i class="fas fa-user-circle">Help</i></li>
+		  <li><i class="fas fa-user-circle">Logout</i></li>
+
+		</ul>
+	  </div>
+	</div>
+  </nav>

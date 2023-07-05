@@ -2,24 +2,32 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using MySql.EntityFrameworkCore.Metadata;
 
+#nullable disable
+
 namespace app.Migrations
 {
-    public partial class Initial : Migration
+    /// <inheritdoc />
+    public partial class Migrations : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterDatabase()
+                .Annotation("MySQL:Charset", "utf8mb4");
+
             migrationBuilder.CreateTable(
                 name: "roles",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    role_name = table.Column<string>(type: "text", nullable: true)
+                    rolename = table.Column<string>(name: "role_name", type: "longtext", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_roles", x => x.id);
-                });
+                    table.PrimaryKey("PRIMARY", x => x.id);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "users",
@@ -27,19 +35,20 @@ namespace app.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    username = table.Column<string>(type: "text", nullable: true),
-                    password_hash = table.Column<string>(type: "text", nullable: true),
-                    password_salt = table.Column<string>(type: "text", nullable: true),
-                    role_id = table.Column<int>(type: "int", nullable: false),
-                    created_at = table.Column<DateTime>(type: "datetime", nullable: false),
-                    deleted_at = table.Column<DateTime>(type: "datetime", nullable: false)
+                    username = table.Column<string>(type: "longtext", nullable: true),
+                    passwordhash = table.Column<string>(name: "password_hash", type: "longtext", nullable: true),
+                    roleid = table.Column<int>(name: "role_id", type: "int", nullable: false),
+                    createdat = table.Column<DateTime>(name: "created_at", type: "datetime(6)", nullable: false),
+                    deletedat = table.Column<DateTime>(name: "deleted_at", type: "datetime(6)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_users", x => x.id);
-                });
+                    table.PrimaryKey("PRIMARY", x => x.id);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

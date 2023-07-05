@@ -44,22 +44,14 @@ namespace app.Repositories
                          }).ToListAsync();
             return await query;
         }
-        public async Task<LoginDto> getUserInfo(string username, string password)
+
+        public async Task<Users> getUserInfo(string username, string password)
         {
             var hashPassword = UserPasswordHashExtension.GetMD5Hash(password);
-            var user = await _DbContext.users.SingleOrDefaultAsync(
-                x => x.username == username && x.password_hash == hashPassword);
-
-
-            return new LoginDto
-            {
-                id = user.id,
-                username = user.username,
-                token = _tokenService.CreateToken(user),
-                role_id = user.role_id,
-                expired_at = DateTime.Now.AddDays(7)
-            };
+            var query = _DbContext.users.Where(x=>x.username == username && x.password_hash == hashPassword).FirstOrDefaultAsync();
+            return await query;
         }
+
         public async Task<UserDto> GetUserById(int id)
         {
             var query = (from u in _DbContext.users
@@ -74,9 +66,5 @@ namespace app.Repositories
             return await query;
         }
 
-        Task<UserDto> IUserRepository.getUserInfo(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -20,10 +20,12 @@ namespace app.Controllers
     {
         private readonly MyDbContext _DbContext;
         private readonly IUserRepository _userRepository;
-        public UserController(MyDbContext DbContext, IUserRepository userRepository)
+        private readonly ITokenService _tokenService;
+        public UserController(MyDbContext DbContext, IUserRepository userRepository, ITokenService tokenService)
         {
             _DbContext = DbContext;
             _userRepository = userRepository;
+            _tokenService = tokenService;
         }
 
         //用户注册
@@ -48,8 +50,21 @@ namespace app.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<Users>> Login(RegisterDto registerDto)
         {
-             await _userRepository.getUserInfo(registerDto.username,registerDto.password);
-            return Ok();
+            var user = await _userRepository.getUserInfo(registerDto.username,registerDto.password);
+            if(user == null){
+                return BadRequest("Invalid username/password");
+            }
+            var role = _DbContext.roles.Where(x=>x.id == user.role_id).FirstOrDefault().role_name;
+            LoginDto loginDto =  new LoginDto()
+            {
+                id = user.id,
+                username = user.username,
+                token = _tokenService.CreateToken(user),
+                role_id = user.role_id,
+                role_name = role,
+                expired_at = DateTime.Now.AddDays(1)
+            };
+            return Ok(loginDto);
         }
 
 
@@ -72,7 +87,7 @@ namespace app.Controllers
             }
             return Ok(user);
         }
-
-
+        
     }
+
 }

@@ -12,12 +12,17 @@ using System.Threading.Tasks;
 
 namespace app.Services
 {
-    public class TokenService :ITokenService
+    public class TokenService : ITokenService
     {
         private readonly SymmetricSecurityKey _key;
-        public TokenService(IConfiguration config)
+        public TokenService()
         {
-            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
+            using (var provider = new System.Security.Cryptography.RNGCryptoServiceProvider())
+            {
+                var keyBytes = new byte[64];
+                provider.GetBytes(keyBytes);
+                _key = new SymmetricSecurityKey(keyBytes);
+            }
         }
         public string CreateToken(Users user)
         {
@@ -30,7 +35,8 @@ namespace app.Services
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddDays(7),
+                Expires = DateTime.Now.AddDays(1),
+                NotBefore = DateTime.Now,
                 SigningCredentials = creds
             };
 
@@ -38,5 +44,5 @@ namespace app.Services
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
-        }
     }
+}

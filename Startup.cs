@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 
 namespace app
 {
+    
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -31,8 +32,18 @@ namespace app
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+    {
+        options.AddDefaultPolicy(builder =>
+        {
+            builder.WithOrigins("http://localhost:4200")
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+    });
+            services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<ITokenService,TokenService>();
+
             services.AddDbContext<MyDbContext>(options => options.UseMySQL(Configuration.GetConnectionString("connectionDB")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -50,6 +61,8 @@ namespace app
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "app v1"));
             }
+
+            app.UseCors();
 
             app.UseHttpsRedirection();
 

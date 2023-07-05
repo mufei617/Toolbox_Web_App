@@ -1,0 +1,11 @@
+<div class="container" >
+    <div class="top"></div>
+    <div class="bottom"></div>
+    <div class="center">
+        <h2>WELCOME</h2>
+        <input type="text" placeholder="Username..." [(ngModel)]="model.username">
+        <input type="password" placeholder="Password..." [(ngModel)]="model.password">
+        <button class="loginBtn" (click)="login()"><span>SIGN IN</span></button>
+        <a href="/register" >Does not have an account? Click to sign up!</a>
+    </div>
+</div>
