@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/weather-icons/1.2/css/weather-icons.min.css);
 
 * {
   margin: 0;
@@ -178,7 +180,7 @@ h1 {
 span {
   text-align: center;
   opacity: .7;
-  font-size: 1.2rem;
+  font-size: 1.0rem;
 }
 
 ul li:hover {
@@ -200,4 +202,282 @@ ul li:hover::after {
   to {
     width: 88%;
   }
+}
+/* / */
+
+body {
+  background: linear-gradient(90deg, #7474BF 10%, #348AC7 90%);
+}
+
+#weather_wrapper {
+  position: fixed;
+  bottom: 18px;
+  right: 0px;
+  transform: scale(0.8);
+  transform-origin: bottom right;
+}
+
+.weatherCard {
+  width: 280px;
+  height: 120px;
+  font-family: 'Open Sans';
+  position: relative;
+  
+}
+
+.currentTemp {
+  width: 160px;
+  height: 140px;
+  background: #df7b7b;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.currentWeather {
+  width: 120px;
+  height: 140px;
+  background: rgb(237, 237, 237);
+  margin: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  
+}
+
+.temp {
+  font-size: 60px;
+  text-align: center;
+  display: block;
+  font-weight: 300;
+  color: rgb(255, 255, 255);
+  padding: 12px 0 0;
+}
+
+.location {
+  color: rgb(255, 255, 255);
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 24px;
+  display: block;
+}
+
+.conditions {
+  font-family: weathericons;
+  font-size: 60px;
+  display: block;
+  padding: 12px 0 0;
+  text-align: center;
+}
+
+.info {
+  width: 120px;
+  height: 32px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #df7b7b;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+.rain {
+  width: 50%;
+  position: absolute;
+  left: 6px;
+  word-spacing: 24px;
+  top: 2px;
+}
+
+.rain::before {
+  display: block;
+  content: '\f04e';
+  font-family: weathericons;
+  font-size: 24px;
+  left: 4px;
+  top: -2px;
+  position: absolute;
+}
+
+.wind {
+  width: 50%;
+  right: -6px;
+  position: absolute;
+  word-spacing: 24px;
+  top: 2px;
+}
+
+.wind::before {
+  display: block;
+  content: '\f050';
+  font-family: weathericons;
+  font-size: 15px;
+  left: -6px;
+  position: absolute;
+  top: 3px;
+}
+/* sidebar*/
+aside {
+  color: #fff;
+  width: 250px;
+  padding-left: 20px;
+  height: 100vh;
+  background-image: linear-gradient(30deg , #dfd79c, #df7b7b);
+  border-top-right-radius: 80px;
+  position: fixed; /* 添加fixed定位 */
+  left: 0; /* 将left属性设置为0 */
+  top: 70px;
+}
+
+aside a {
+  font-size: 12px;
+  color: #fff;
+  display: block;
+  padding: 12px;
+  padding-left: 30px;
+  text-decoration: none;
+  -webkit-tap-highlight-color:transparent;
+}
+
+aside a:hover {
+  color: #df7b7b;
+  background: #fff;
+  outline: none;
+  position: relative;
+  background-color: #fff;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+aside a i {
+  margin-right: 5px;
+}
+
+aside a:hover::after {
+  content: "";
+  position: absolute;
+  background-color: transparent;
+  bottom: 100%;
+  right: 0;
+  height: 35px;
+  width: 35px;
+  border-bottom-right-radius: 18px;
+  box-shadow: 0 20px 0 0 #fff;
+}
+
+aside a:hover::before {
+  content: "";
+  position: absolute;
+  background-color: transparent;
+  top: 38px;
+  right: 0;
+  height: 35px;
+  width: 35px;
+  border-top-right-radius: 18px;
+  box-shadow: 0 -20px 0 0 #fff;
+}
+
+aside p {
+  margin: 0;
+  padding: 40px 0;
+}
+
+body {
+  font-family: 'Roboto';
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+}
+
+.social {
+  height: 0;  
+}
+
+.social i:before {
+  width: 14px;
+  height: 14px;
+  font-size: 14px;
+  position: fixed;
+  color: #fff;
+  background: #0077B5;
+  padding: 10px;
+  border-radius: 50%;
+  top:5px;
+  right:5px;
+}
+/*  */
+.button-group {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  position: relative; /* 设置相对定位 */
+  margin-left: 180px;
+  margin-top: 100px;
+  height: 400px;
+}
+
+.group-title {
+  /* position: absolute; */ /* 将绝对定位注释掉或删除 */
+  /* top: 0;
+  right: 0; */
+  margin-top: -40px; /* 根据需要调整标题的垂直位置 */
+  background-color: #df7b7b;
+  color: #fff;
+  padding: 10px 20px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  font-size: 24px;
+}
+
+
+.button-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap; /* 添加这一行以实现换行 */
+}
+
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  text-align: center;
+  width: calc(16.666% - 20px); /* 设置每行六个按钮 */
+}
+.button button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #df7b7b;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.button:hover button {
+  background-color: #ccc;
+}
+
+.icon {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.button-text {
+  margin-bottom: 5px;
+}
+
+.button-description {
+  margin-top: 10px;
+}
+.button-text img {
+  width: 40px;
+  height: 20px;
+  
 }

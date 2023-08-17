@@ -1,0 +1,20 @@
+
+
+.pink-theme .card {
+    border: 1px solid #df7b7b; /* Hot pink border */
+}
+
+.pink-theme .card-header {
+    background-color: #df7b7b; /* Hot pink background */
+    color: white; /* White text */
+}
+
+.pink-theme .btn-light {
+    border: 1px solid #df7b7b; /* Hot pink border */
+    color: #df7b7b; /* Hot pink text */
+}
+
+.pink-theme .btn-light:hover {
+    background-color: #df7b7b; /* Hot pink background on hover */
+    color: white; /* White text on hover */
+}

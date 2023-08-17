@@ -1,0 +1,29 @@
+/* 样式可以根据需求自行设计 */
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .progress-bar {
+    width: 100%;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+  }
+  
+  .progress-bar-fill {
+    height: 20px;
+    background-color: #007bff;
+    border-radius: 5px;
+  }
+  
+  .download-link {
+    margin-top: 10px;
+  }
+  

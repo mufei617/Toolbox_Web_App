@@ -1,18 +1,18 @@
-﻿using app.DataAccess;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using app.DataAccess;
 using app.DTOs;
+using app.Interfaces;
+using app.Repositories;
+using app.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.Cryptography;
-using app.Services;
-using app.Repositories;
-using app.Interfaces;
 
 namespace app.Controllers
 {
@@ -50,12 +50,13 @@ namespace app.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<Users>> Login(RegisterDto registerDto)
         {
-            var user = await _userRepository.getUserInfo(registerDto.username,registerDto.password);
-            if(user == null){
+            var user = await _userRepository.getUserInfo(registerDto.username, registerDto.password);
+            if (user == null)
+            {
                 return BadRequest("Invalid username/password");
             }
-            var role = _DbContext.roles.Where(x=>x.id == user.role_id).FirstOrDefault().role_name;
-            LoginDto loginDto =  new LoginDto()
+            var role = _DbContext.roles.Where(x => x.id == user.role_id).FirstOrDefault().role_name;
+            LoginDto loginDto = new LoginDto()
             {
                 id = user.id,
                 username = user.username,
@@ -81,13 +82,40 @@ namespace app.Controllers
         public async Task<ActionResult<Users>> GetUser(int id)
         {
             var user = await _userRepository.GetUserById(id);
-            if(user == null)
+            if (user == null)
             {
                 return BadRequest("User not exists!");
             }
             return Ok(user);
         }
-        
-    }
 
+        //这里
+        [HttpPut("changeusername")]
+        public async Task<ActionResult<Users>> ChangeUsername(UpdateDTO updateDTO)
+        {
+            if (await _userRepository.UserExists(updateDTO.oldUsername))
+            {
+                var user = await _userRepository.changeUsername(updateDTO);
+                return user;
+            }
+
+            // 如果旧用户名不存在，可以返回相应的错误响应
+            return BadRequest("Old username does not exist.");
+        }
+
+        [HttpPut("changepassword")]
+        public async Task<ActionResult<Users>> ChangePassword(UpdateDTO updateDTO)
+        {
+            if (await _userRepository.UserExists(updateDTO.oldUsername))
+            {
+                var user = await _userRepository.changePassword(updateDTO);
+                return user;
+            }
+
+            // 如果旧用户名不存在，可以返回相应的错误响应
+            return BadRequest("user does not exist.");
+        }
+
+
+    }
 }

@@ -1,25 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using app.DataAccess;
 using app.Interfaces;
 using app.Repositories;
 using app.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace app
 {
-    
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -33,15 +34,23 @@ namespace app
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
-    {
-        options.AddDefaultPolicy(builder =>
-        {
-            builder.WithOrigins("http://localhost:4200")
-                   .AllowAnyHeader()
-                   .AllowAnyMethod();
-        });
-    });
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200")
+                           .AllowAnyHeader()
+                           .AllowAnyMethod()
+                           .AllowCredentials();
+                });
+            });
+    services.AddMemoryCache();
+
+            services.Configure<KestrelServerOptions>(Configuration.GetSection("Kestrel"));
+            services.AddAntiforgery(options => options.Cookie.SecurePolicy = CookieSecurePolicy.Always);
+
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<VideoProcessService>();
+
             services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddDbContext<MyDbContext>(options => options.UseMySQL(Configuration.GetConnectionString("connectionDB")));

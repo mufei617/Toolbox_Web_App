@@ -11,5 +11,9 @@ namespace app.Interfaces
         public Task<IEnumerable<UserDto>> GetAllUsers();
         public Task<UserDto> GetUserById(int id);
         public Task<Users> getUserInfo(string username, string password);
+        public Task<Users> changeUsername(UpdateDTO updateDTO);
+        public Task<Users> changePassword(UpdateDTO updateDTO);
+
+
     }
 }

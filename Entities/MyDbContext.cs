@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using app.Entities;
 
 namespace app.DataAccess
 {
@@ -14,6 +15,8 @@ namespace app.DataAccess
         }
         public DbSet<Users> users { get; set; }
         public DbSet<Roles> roles { get; set; }
+
+       // public DbSet<Videos> videos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

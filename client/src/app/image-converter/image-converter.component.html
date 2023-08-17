@@ -1,0 +1,30 @@
+<!-- Ensure you have the Bootstrap CSS included -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Your HTML elements with Bootstrap classes -->
+<div class="container mt-5 pink-theme">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header">
+                    Image Converter
+                </div>
+                <div class="card-body">
+                    <div class="custom-file mb-3">
+                        <input type="file" class="custom-file-input" id="customFile" (change)="onFileSelected($event)">
+                        <label class="custom-file-label" for="customFile">{{ selectedFileName }}</label>
+                     </div>
+                    <div class="form-group">
+                        <label for="formatSelect">Choose Target Format:</label>
+                        <select class="form-control" id="formatSelect" [(ngModel)]="targetFormat">
+                            <option value="png">PNG</option>
+                            <option value="jpeg">JPEG</option>
+                            <!-- Add more options if needed -->
+                        </select>
+                    </div>
+                    <button class="btn btn-light btn-block" (click)="convertImage()">Convert</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

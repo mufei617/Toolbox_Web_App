@@ -22,6 +22,10 @@ export class AccountService {
   }
 
 
+  convertVideo(model:any){
+    return this.http.post<User>(this.baseUrl + 'tools/convertvideo', model)
+
+  }
   login(model: any) {
     return this.http.post<User>(this.baseUrl + 'user/login', model)
       .pipe(
@@ -42,5 +46,20 @@ export class AccountService {
 
   getallUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl + 'user/getallusers');
+  }
+
+  updateUsername(model:any) {
+    return this.http.put<User>(this.baseUrl+'user/changeusername',model)
+
+  }
+  updatePassword(model: any): Observable<any> {
+    return this.http.put<any>(this.baseUrl + 'user/changepassword', model);
+  }
+
+  deleteUser(model: any): Observable<any> {
+    return this.http.put<any>(this.baseUrl + 'user/delete', model);
+  }
+  updateUserRole(model: any): Observable<any> {
+    return this.http.put<any>(this.baseUrl + 'account/changeroleid', model);
   }
 }

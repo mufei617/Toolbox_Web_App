@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>视频格式转换工具</h2>
+  <form [formGroup]="videoForm">
+    <div class="form-group">
+      <label for="videoFile">选择视频文件：</label>
+      <input
+        type="file"
+        id="videoFile"
+        (change)="onFileSelected($event)"
+        formControlName="videoFile"
+      />
+    </div>
+
+      
+      
+      
+      
+      
+    <button (click)="convertVideo()">开始转换</button>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" [style.width.%]="progress"></div>
+    </div>
+    <div *ngIf="showDownloadLink">
+      <a [href]="videoUrl" download="converted_video.avi">点击这里下载转换后的视频</a>
+    </div>
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+  </form>
+</div>

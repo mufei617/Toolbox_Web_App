@@ -1,30 +1,185 @@
-<div class="card-container">
-	<span class="pro">PRO</span>
-	<h3>Ricky Park</h3>
-	<h6>New York</h6>
-	<p>User interface designer and <br/> front-end developer</p>
-	<div class="buttons">
-		<button class="primary">
-			Message
-		</button>
-		<button class="primary ghost">
-			Following
-		</button>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+<div class="main-content">
+	<!-- Top navbar -->
+	<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+		<div class="container-fluid">
+			<!-- Brand -->
+			<a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block">User profile</a>
+			<!-- Form -->
+
+			<!-- User -->
+		</div>
+	</nav>
+	<!-- Header -->
+	<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+		style=" background-size: cover; background-position: center top;">
+		<!-- Mask -->
+		<span class="mask bg-gradient-default opacity-8"></span>
+		<!-- Header container -->
+		<div class="container-fluid d-flex align-items-center">
+			<div class="row">
+				<div class="col-lg-7 col-md-10">
+					<h1 class="display-2 text-white">Hello {{Username}}</h1>
+					<p class="text-white mt-0 mb-5">This is your profile page. you can manage your account information
+						in this page. </p>
+					<a  class="btn btn-info" >Edit profile</a>
+					<a href="#!" class="btn btn-danger text-white">delete this account!</a>
+
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="skills">
-		<h6>Skills</h6>
-		<ul>
-			<li>UI / UX</li>
-			<li>Front End Development</li>
-			<li>HTML</li>
-			<li>CSS</li>
-			<li>JavaScript</li>
-			<li>React</li>
-			<li>Node</li>
-		</ul>
+	<!-- Page content -->
+	<div class="container-fluid mt--7">
+		<div class="row">
+			<div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+				<div class="card card-profile shadow">
+					<div class="row justify-content-center">
+						<div class="col-lg-3 order-lg-2">
+							<div class="card-profile-image">
+								<a href="#">
+									<img src="assets/userIcon.png" class="rounded-circle">
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+
+					</div>
+					<div class="card-body pt-0 pt-md-4">
+						<div class="row">
+							<div class="col">
+								<div class="card-profile-stats d-flex justify-content-center mt-md-5">
+									<div>
+										<span class="heading">22</span>
+										<span class="description">Friends</span>
+									</div>
+									<div>
+										<span class="heading">10</span>
+										<span class="description">Photos</span>
+									</div>
+									<div>
+										<span class="heading">89</span>
+										<span class="description">Comments</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="text-center">
+							<h3>{{Username}}</h3>
+
+							<div class="h5 mt-4">
+								<i class="ni business_briefcase-24 mr-2"></i>{{position}}
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-8 order-xl-1">
+				<div class="card bg-secondary shadow">
+					<div class="card-header bg-white border-0">
+						<div class="row align-items-center">
+							<div class="col-8">
+								<h3 class="mb-0">My account</h3>
+							</div>
+							<div class="col-4 text-right">
+								<a href="#!" class="btn btn-sm btn-primary">others</a>
+							</div>
+						</div>
+					</div>
+					<div class="card-body">
+						<form>
+							<h6 class="heading-small text-muted mb-4">User information</h6>
+							<div class="pl-lg-4">
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group focused">
+											<label class="form-control-label" for="input-username">Username</label>
+											<input type="text" name="newusername"
+												class="form-control form-control-alternative" [(ngModel)]="model.newusername" placeholder="Username">
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group focused">
+											<label class="form-control-label" for="input-oldpassword">your old password</label>
+											<input type="password" name="oldpassword" 
+												class="form-control form-control-alternative" [(ngModel)]="model.oldpassword" placeholder="old password">
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label class="form-control-label" for="input-password">
+												your new password</label>
+											<input type="password" name="newpassword"
+												class="form-control form-control-alternative" [(ngModel)]="model.newpassword" placeholder="new password">
+
+										</div>
+									</div>
+									<div class="col-lg-6" >
+										<div class="form-group">
+										  <label class="form-control-label" for="input-confirmpassword">Confirm Password</label>
+										  <input type="password" name="newConfirmpassword" class="form-control form-control-alternative" [(ngModel)]="model.newconfirmpassword" placeholder="Confirm your new password">
+										</div>
+									  </div>
+									  
+
+								</div>
+
+
+							</div>
+							<hr class="my-4">
+							<!-- Address -->
+							<h6 class="heading-small text-muted mb-4">Contact information</h6>
+							<div class="pl-lg-4">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group focused">
+											<label class="form-control-label" for="input-address">Address</label>
+											<input id="input-address" class="form-control form-control-alternative"
+												placeholder="Home Address"
+												value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-4">
+										<div class="form-group focused">
+											<label class="form-control-label" name = "location" >your city :</label>
+
+											<label class="form-control-label" name = "location" >{{location?.city}}</label>
+											
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="form-group focused">
+											<label class="form-control-label" for="input-country">Country : </label>
+											<label class="form-control-label" for="input-country">  {{location?.country}}</label>
+
+										</div>
+									</div>
+									
+								</div>
+							</div>
+							<hr class="my-4">
+							<!-- Description -->
+							<h6 class="heading-small text-muted mb-4">About me</h6>
+							<div class="pl-lg-4">
+								<div class="form-group focused">
+									<label>About Me</label>
+									<textarea rows="4" class="form-control form-control-alternative"
+										placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
+								</div>
+							</div>
+							<a  class="btn btn-info" style="margin-left: 300px;" (click)="changePassword()">Edit profile</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
+<footer class="footer">
 
-<footer>
-	
 </footer>

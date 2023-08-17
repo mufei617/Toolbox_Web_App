@@ -5,21 +5,141 @@
 	<a href="#">About</a>
 	<div class="dot"></div>
 
-	<div class="dropdown"(click)="toggleDropdown()">
-	  <img class="user-avatar" src="assets/userIcon.png" alt="User Avatar">
-	  <div [ngClass]="{'dropdown-menu': true, 'onOf': isDropdownOpen}">
-		
-		  <h1>{{this.loggedInUser?.username}}</h1>
-		  <span>admin</span>
-		  <ul>
-		  <li class="divider"></li>
+	<div class="dropdown" (click)="toggleDropdown()">
+		<img class="user-avatar" src="assets/userIcon.png" alt="User Avatar">
+		<div [ngClass]="{'dropdown-menu': true, 'onOf': isDropdownOpen}">
 
-		  <li><i class="fas fa-user-circle" href="/profile">My profile</i></li>
-		  <li><i class="fas fa-user-circle">Setting</i></li>
-		  <li><i class="fas fa-user-circle">Help</i></li>
-		  <li><i class="fas fa-user-circle">Logout</i></li>
+			<h1>{{this.loggedInUser?.username}}</h1>
+			<span>admin</span>
+			<ul>
+				<li class="divider"></li>
 
-		</ul>
-	  </div>
+				<li><i class="fas fa-user-circle" (click)="goToProfile()">My profile</i></li>
+				<li><i class="fas fa-user-circle">Setting</i></li>
+				<li><i class="fas fa-user-circle">Help</i></li>
+				<li><i class="fas fa-user-circle">Logout</i></li>
+
+			</ul>
+		</div>
 	</div>
-  </nav>
+</nav>
+
+<div id="weather_wrapper">
+	<div class="weatherCard">
+		<div class="currentTemp">
+			<span class="temp">{{ temperature }}°</span>
+			<span class="location">{{ city }}</span>
+		</div>
+		<div class="currentWeather">
+			<span class="conditions" [innerHTML]="weatherIcon"></span>
+			<div class="info">
+				<span class="rain">{{ rainAmount }} MM</span>
+				<span class="wind">{{ windSpeed }} MPH</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<aside>
+	<p> Category </p>
+	<a href="javascript:void(0)">
+		<i class="fa fa-user-o" aria-hidden="true"></i>
+		Daily
+	</a>
+	<a href="javascript:void(0)">
+		<i class="fa fa-laptop" aria-hidden="true"></i>
+		Computers
+	</a>
+	<a href="javascript:void(0)">
+		<i class="fa fa-clone" aria-hidden="true"></i>
+		Shared with me
+	</a>
+	<a href="javascript:void(0)">
+		<i class="fa fa-star-o" aria-hidden="true"></i>
+		Starred
+	</a>
+	<a href="javascript:void(0)">
+		<i class="fa fa-trash-o" aria-hidden="true"></i>
+		Trash
+	</a>
+</aside>
+
+<div class="social">
+	<a href="https://www.linkedin.com/in/florin-cornea-b5118057/" target="_blank">
+		<i class="fa fa-linkedin"></i>
+	</a>
+</div>
+<div class="button-group">
+	<h2 class="group-title">Daily</h2>
+
+
+
+	<div class="button-container">                                                  
+		<!-- 第一行按钮 -->
+		<div class="button">
+			<button (click)="goToVideoConversion()">
+				<i class="icon fas fa-cog"></i>                                
+				<span class="button-text">按钮1</span>
+			</button>
+			<div class="button-description">
+				<p>change video's formart</p>
+			</div>
+		</div>
+
+		
+		<div class="button">
+			<button>
+				<i class="icon fas fa-pencil-alt"></i>
+				<span class="button-text">按钮2</span>
+			</button>
+			<div class="button-description">
+				<p>live stream</p>
+			</div>
+		</div>
+		<div class="button">
+			<button (click)="gotoimageconversion()">
+				<i class="icon fas fa-pencil-alt"></i>
+				<span class="button-text">
+					<img src="assets\image_logo.png" alt="Logo">
+				</span>
+			</button>
+			<div class="button-description">
+				<p>convertImage</p>
+			</div>
+		</div>
+		<div class="button">
+			<button onclick="handleButtonClick()">
+				<i class="icon fas fa-pencil-alt"></i>
+				<span class="button-text">按钮2</span>
+			</button>
+			<div class="button-description">
+				<p>这是按钮2的说明</p>
+			</div>
+		</div>
+		<div class="button">
+			<button onclick="handleButtonClick()">
+				<i class="icon fas fa-pencil-alt"></i>
+				<span class="button-text">按钮2</span>
+			</button>
+			<div class="button-description">
+				<p>这是按钮2的说明</p>
+			</div>
+		</div>
+		<div class="button">
+			<button onclick="handleButtonClick()">
+				<i class="icon fas fa-pencil-alt"></i>
+				<span class="button-text">按钮2</span>
+			</button>
+			<div class="button-description">
+				<p>这是按钮2的说明</p>
+			</div>
+		</div>
+
+
+	</div> 
+
+
+
+</div>
