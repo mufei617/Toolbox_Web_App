@@ -1,0 +1,14 @@
+body, html, app-root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 假设你的主要内容在一个名为 .content 的容器中 */
+.content {
+    flex: 1 0 auto; 
+}
+
+app-footer {
+    flex-shrink: 0; 
+}

@@ -1,0 +1,46 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: #FFE0E9; /* 粉色背景色 */
+    color: #333; /* 文本颜色 */
+    padding: 2em;
+}
+
+h2 {
+    color: #df7b7b; /* 粉色主题标题颜色 */
+    border-bottom: 2px solid #df7b7b; /* 粉色下划线 */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #df7b7b; /* 粉色标签文本 */
+}
+
+textarea {
+    width: 100%; /* 宽度为100%以适应容器 */
+    padding: 10px;
+    border: 2px solid #FFAEC9; /* 粉色边框 */
+    border-radius: 5px;
+    margin-top: 10px;
+    font-family: 'Raleway', sans-serif; /* 继承Raleway字体 */
+}
+
+button {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #df7b7b; /* 粉色背景 */
+    color: #FFF; /* 白色文本 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s; /* 过渡效果 */
+}
+
+button:hover {
+    background-color: #df7b7b; /* 更深的粉色背景 */
+}

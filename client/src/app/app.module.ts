@@ -19,6 +19,11 @@ import { LiveVideoComponent } from './live-video/live-video.component';
 import { ImageConverterComponent } from './image-converter/image-converter.component';
 import { GenerateQRcodeComponent } from './generate-qrcode/generate-qrcode.component'; // Import the ReactiveFormsModule
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { FashionColorsComponent } from './fashion-colors/fashion-colors.component';
+import { FooterComponent } from './footer/footer.component';
+import { JsontoXMLComponent } from './jsonto-xml/jsonto-xml.component';
+import { JsontoHTMLComponent } from './jsonto-html/jsonto-html.component';
+//import { Renderer2, RendererFactory2 } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -31,6 +36,10 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
     LiveVideoComponent,
     ImageConverterComponent,
     GenerateQRcodeComponent,
+    FashionColorsComponent,
+    FooterComponent,
+    JsontoXMLComponent,
+    JsontoHTMLComponent,
   ],
   imports: [
     FormsModule,
@@ -39,6 +48,7 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
     BrowserAnimationsModule, // required animations module
   ReactiveFormsModule,
     BrowserModule,
+    NgxQRCodeModule,
     AppRoutingModule,
     PasswordStrengthMeterModule.forRoot({serviceClass: PasswordStrengthService }),
     

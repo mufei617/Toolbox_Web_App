@@ -1,1 +1,28 @@
-<p>generate-qrcode works!</p>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<div class="container mt-5 pink-theme">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header">
+                    Generate QR Code
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="url">Enter URL:</label>
+                            <input type="url" class="form-control" id="url" [(ngModel)]="url" name="url" required>
+                        </div>
+                        <div *ngIf="url" class="mt-4 text-center">
+                            <!-- 注意：我们已经移除了 #qrcodeElement -->
+                            <ngx-qrcode [elementType]="elementType" [value]="url">
+                            </ngx-qrcode>
+                            <!-- 当QR码已生成时，显示下载按钮 -->
+                            <button *ngIf="url" class="btn btn-light mt-3" (click)="downloadQRCode()">Download QR Code</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

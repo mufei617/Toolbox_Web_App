@@ -1,0 +1,56 @@
+/* 定义整个表格的样式 */
+table {
+    width: 100%;
+    border-collapse: collapse; /* 这确保表格中的每个边框都不重叠 */
+    background-color: #ffe0e0; /* 粉色背景 */
+}
+
+/* 定义表头、表格单元格和整个表格的边框样式 */
+th, td, table {
+    border: 1px solid #000000; /* 粉色边框 */
+}
+
+/* 定义表头和表格单元格的内部填充 */
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+/* 定义表头的背景颜色 */
+th {
+    background-color: #df7b7b; /* 粉色背景 */
+}
+
+/* 添加整个页面的背景颜色 */
+/* body, textarea, button {
+    background-color: #ffe0e0; /* 浅粉色背景 */
+/* } */ 
+
+/* 修改文字颜色以适应粉色背景 */
+body, textarea, button {
+    color: #993366; /* 深粉红色 */
+}
+
+/* 使按钮更具吸引力 */
+button {
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #df7b7b; /* 按钮的粉色背景 */
+    color: white; /* 文本颜色 */
+}
+
+button:hover {
+    background-color: #993366; /* 深粉红色 */
+    color: white;
+}
+
+textarea {
+    border: 1px solid #df7b7b; /* 粉色边框 */
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    resize: vertical;
+}

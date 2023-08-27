@@ -1,0 +1,23 @@
+<div>
+    <button (click)="toggleOrder()">Switch Mode</button><br><br>
+    <div *ngIf="showTableFirst">
+        <textarea placeholder="Enter JSON" [(ngModel)]="inputJson" rows="10" cols="50"></textarea><br>
+        <button (click)="convert()">Convert to Table</button>
+        
+        <div class="table-wrapper">
+          <div [innerHTML]="tableHtmlContent"></div>
+        </div>
+        <br>
+        <h3>Generated HTML Source Code:</h3>
+
+        <textarea class="code-output" readonly rows="10" cols="50" [value]="tableHtmlContent"></textarea>
+        <button (click)="copyToClipboard()">Copy Source Code</button>
+
+    </div>
+    <div *ngIf="!showTableFirst">
+        <textarea placeholder="Enter Table HTML" [(ngModel)]="tableHtmlContent" rows="10" cols="50"></textarea><br>
+        <button (click)="convert()">Convert to JSON</button>
+        <textarea class="code-output" readonly rows="10" cols="50" [value]="inputJson"></textarea>
+    </div>
+  </div>
+  

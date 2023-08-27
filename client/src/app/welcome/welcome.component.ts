@@ -117,4 +117,16 @@ export class WelcomeComponent implements OnInit {
   gotoimageconversion() {
     this.router.navigateByUrl('/image-converter');
   }
+  gotoGenerateQRcode() {
+    this.router.navigateByUrl('/generate-qrcode');
+  }
+  gotoFashionColor() {
+    this.router.navigateByUrl('/fashion-colors');
+  }
+  gotoJSONtoXML() {
+    this.router.navigateByUrl('/jsonto-xml');
+  }
+  gotoJSONtoHTML() {
+    this.router.navigateByUrl('/jsonto-html');
+  }
 }

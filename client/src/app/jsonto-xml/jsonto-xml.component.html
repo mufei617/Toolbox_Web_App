@@ -1,0 +1,27 @@
+<div>
+    <h2 *ngIf="showXmlFirst">XML to JSON Converter</h2>
+    <h2 *ngIf="!showXmlFirst">JSON to XML Converter</h2>
+    <button (click)="toggleOrder()">Toggle Order</button>
+
+    <ng-container *ngIf="showXmlFirst">
+        <label>Input XML:</label>
+        <textarea [(ngModel)]="inputXml" rows="10" cols="50"></textarea>
+    </ng-container>
+    <ng-container *ngIf="!showXmlFirst">
+        <label>Input JSON:</label>
+        <textarea [(ngModel)]="inputJson" rows="10" cols="50"></textarea>
+    </ng-container>
+  
+    <button (click)="convert()">{{showXmlFirst ? 'Convert to JSON' : 'Convert to XML'}}</button>
+  
+    <ng-container *ngIf="showXmlFirst">
+        <label>Output JSON:</label>
+        <textarea [value]="outputJson" rows="10" cols="50" readonly #outputJsonText></textarea>
+        <button (click)="copyToClipboard(outputJsonText)">复制JSON</button>
+    </ng-container>
+    <ng-container *ngIf="!showXmlFirst">
+        <label>Output XML:</label>
+        <textarea [value]="outputXml" rows="10" cols="50" readonly #outputXmlText></textarea>
+        <button (click)="copyToClipboard(outputXmlText)">复制XML</button>
+    </ng-container>
+</div>
